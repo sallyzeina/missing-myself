@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Missing: Myself</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Reenie+Beanie&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --desk:#22201c; --desk2:#2e2b25; --paper:#e2d6b8; --ink:#1f1b15; --red:#a3261d; --pen:#b3201a;
+  --manila:#c4aa72; --text:#ddd6c4; --muted:#a39b87;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--desk:#8c836f;--desk2:#9b927d;--text:#1f1b15;--muted:#3e382c;color-scheme:light}}
+:root[data-theme="light"]{--desk:#8c836f;--desk2:#9b927d;--text:#1f1b15;--muted:#3e382c;color-scheme:light}
+:root[data-theme="dark"]{--desk:#22201c;--desk2:#2e2b25;--text:#ddd6c4;--muted:#a39b87}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--text);font-family:"Source Serif 4",Georgia,serif;font-size:18px;line-height:1.7;position:relative}
+body::after{content:"";position:fixed;inset:0;background:var(--grain);opacity:.16;pointer-events:none;mix-blend-mode:overlay;z-index:50}
+.t{font-family:"Special Elite","Courier New",monospace}
+.pen{font-family:"Reenie Beanie","Comic Sans MS",cursive;color:var(--pen);font-size:26px;line-height:1.1}
+main{max-width:980px;margin:0 auto;padding:18px 18px 90px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:"Special Elite",monospace;font-size:14px;color:var(--muted);padding-bottom:26px}
+.rec::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--red);margin-right:7px;animation:b 1.5s steps(2) infinite}
+@keyframes b{50%{opacity:0}}
+h2{font-family:"Special Elite",monospace;font-weight:400;font-size:clamp(26px,5vw,36px);margin:90px 0 6px;transform:rotate(-.8deg)}
+.lede{max-width:56ch;color:var(--muted);margin:0 0 26px}
+.paper{background:var(--paper);color:var(--ink);background-image:var(--grain);background-blend-mode:multiply;position:relative}
+
+/* poster */
+.poster{padding:30px 28px 70px;transform:rotate(-.7deg);box-shadow:3px 14px 40px rgba(0,0,0,.55);
+ clip-path:polygon(0 0,100% 0,100% 94%,96% 97%,91% 94%,86% 98%,80% 95%,73% 99%,66% 95%,58% 98%,50% 94%,43% 98%,35% 95%,28% 99%,20% 95%,12% 98%,6% 95%,0 98%)}
+.poster h1{font-family:"Special Elite",monospace;font-weight:400;font-size:clamp(60px,16vw,140px);line-height:.9;margin:0;color:var(--red);text-align:left;letter-spacing:-.01em;filter:blur(.4px)}
+.sub{font-family:"Special Elite",monospace;font-size:clamp(17px,3vw,24px);margin:8px 0 22px;max-width:30ch}
+.row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:30px;align-items:start}
+@media(max-width:700px){.row{grid-template-columns:1fr}}
+.polaroid{background:#efe9d6;padding:12px 12px 44px;transform:rotate(2.2deg);box-shadow:2px 6px 14px rgba(0,0,0,.4);position:relative}
+.polaroid::before{content:"";position:absolute;top:-13px;left:38%;width:70px;height:24px;background:rgba(206,188,130,.85);transform:rotate(-5deg)}
+.pic{aspect-ratio:4/5;background:#b3ab93;overflow:hidden;position:relative}
+.pic svg{width:100%;height:100%;display:block;transition:opacity .9s,filter .9s}
+.polaroid .cap{position:absolute;bottom:8px;left:14px;right:14px}
+.pic .st{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg);border:4px solid var(--red);color:var(--red);font-family:"Special Elite",monospace;font-size:26px;padding:2px 12px;opacity:0;transition:opacity .6s;white-space:nowrap;background:rgba(226,214,184,.55)}
+.pic.gone .st{opacity:.92}
+dl{margin:0}
+dt{font-family:"Special Elite",monospace;font-size:14px;margin-top:14px;color:#5b4f38}
+dd{margin:0;border-bottom:1px solid rgba(31,27,21,.35);min-height:1.7em;font-size:17px}
+.bar-r{background:var(--ink);color:var(--ink);padding:0 3px;transition:.5s;user-select:none}
+.bar-r.off{background:transparent;color:inherit;user-select:auto}
+.reward{margin:26px 0 0;font-family:"Special Elite",monospace;font-size:18px}
+.circle{position:absolute;pointer-events:none}
+.ring{position:absolute;right:-8px;top:-34px;width:150px;height:60px}
+.coffee{position:absolute;right:6%;bottom:12%;width:130px;height:130px;border-radius:50%;border:5px solid rgba(110,70,30,.22);box-shadow:inset 0 0 12px rgba(110,70,30,.18);pointer-events:none}
+.note-pen{position:absolute;left:34%;top:-32px;transform:rotate(-6deg);max-width:200px;z-index:3;text-shadow:0 0 3px #e2d6b8}
+
+/* slider */
+.file{margin-top:56px;background:var(--manila);color:var(--ink);padding:22px 24px 26px;transform:rotate(.5deg);margin-left:4%;box-shadow:2px 8px 20px rgba(0,0,0,.4)}
+.file label{font-family:"Special Elite",monospace;font-size:20px;display:block;margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--red);height:34px}
+.ticks{display:flex;justify-content:space-between;font-family:"Special Elite",monospace;font-size:14px}
+.rep{margin-top:14px;min-height:10em}
+.rep h3{font-family:"Special Elite",monospace;font-weight:400;font-size:22px;margin:0 0 4px}
+.rep p{margin:0 0 10px;max-width:60ch}
+
+/* evidence */
+.ev{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.bag{all:unset;cursor:pointer;box-sizing:border-box;background:rgba(226,214,184,.1);border:1px solid rgba(226,214,184,.4);padding:16px 18px;width:300px;max-width:100%;position:relative}
+.bag:nth-child(1){transform:rotate(-1.5deg)}.bag:nth-child(2){transform:rotate(1deg);margin-top:26px;width:260px}.bag:nth-child(3){transform:rotate(-.6deg);width:340px}
+.bag:focus-visible,.opt:focus-visible,.go:focus-visible,textarea:focus-visible{outline:3px solid var(--manila);outline-offset:3px}
+.bag .k{font-family:"Reenie Beanie",cursive;font-size:24px;color:#e0766c}
+.bag .nm{font-family:"Special Elite",monospace;font-size:21px;display:block;margin:2px 0}
+.bag .more{font-size:14px;color:var(--manila)}
+.bag .rv{max-height:0;overflow:hidden;transition:max-height .5s;font-size:16px}
+.bag[aria-expanded=true] .rv{max-height:1000px}
+.bag[aria-expanded=true]{background:rgba(196,170,114,.2)}
+
+/* notes */
+.memos{display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start}
+.memo{color:var(--ink);padding:22px;font-size:17px}
+.memo.a{background:var(--manila);flex:1 1 360px;transform:rotate(-.8deg)}
+.memo.b{background:#d5cfbe;flex:1 1 280px;transform:rotate(1.1deg);margin-top:40px}
+.memo h3{font-family:"Special Elite",monospace;font-weight:400;font-size:24px;margin:0 0 6px}
+.memo .q{font-family:"Reenie Beanie",cursive;font-size:27px;line-height:1.1;color:var(--pen);margin:10px 0}
+
+/* interview */
+.iv{background:#d9cfae;color:var(--ink);padding:26px 24px 30px;max-width:760px;margin:0 auto;transform:rotate(-.4deg);box-shadow:2px 10px 26px rgba(0,0,0,.5)}
+.iv .q{font-family:"Special Elite",monospace;font-size:clamp(19px,3vw,23px);line-height:1.4;margin:6px 0 16px}
+.iv .meta{font-family:"Special Elite",monospace;font-size:14px;color:#5b4f38}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;padding:12px 14px;border:1px solid var(--ink);background:rgba(255,255,255,.2);font-size:17px;line-height:1.45}
+.opt:hover{background:rgba(255,255,255,.45)}
+.opt[disabled]{cursor:default}
+.opt.pick{background:var(--ink);color:var(--paper)}
+.fb{margin-top:16px;min-height:5em}
+.fb p{margin:0 0 8px}
+.go{font-family:"Special Elite",monospace;font-size:18px;background:var(--red);color:#f6eedd;border:0;padding:11px 22px;cursor:pointer}
+.stamp{display:inline-block;font-family:"Special Elite",monospace;font-size:clamp(34px,8vw,64px);border:6px solid var(--red);color:var(--red);padding:0 16px;transform:rotate(-6deg);margin:8px 0 14px;line-height:1.2}
+.picks{font-family:"Special Elite",monospace;font-size:15px;margin:0 0 14px;padding-left:20px}
+
+/* sorting table */
+.sorts{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.sc{background:var(--paper);color:var(--ink);background-image:var(--grain);background-blend-mode:multiply;padding:18px 18px 20px;width:290px;max-width:100%;box-shadow:2px 8px 18px rgba(0,0,0,.45)}
+.sc:nth-child(1){transform:rotate(-1.4deg)}.sc:nth-child(2){transform:rotate(1.1deg);margin-top:30px}.sc:nth-child(3){transform:rotate(-.5deg)}
+.sc h3{font-family:"Special Elite",monospace;font-weight:400;font-size:23px;margin:0 0 4px}
+.sc .ask{font-size:15px;margin:0 0 12px;color:#5b4f38}
+.sc .btns{display:flex;gap:8px;flex-wrap:wrap}
+.sc .opt{padding:9px 12px;font-size:16px}
+.sc .res{margin-top:14px;font-size:16px;line-height:1.55}
+.sc .res b{font-family:"Special Elite",monospace;font-weight:400;color:var(--red)}
+.sortnote{margin:24px 0 0;max-width:58ch;font-family:"Reenie Beanie",cursive;font-size:30px;line-height:1.1;color:#e0766c}
+footer{margin-top:80px;font-size:14px;color:var(--muted);max-width:60ch}
+.intro{
+  padding:35px;
+  max-width:850px;
+  margin:0 auto 70px;
+  transform:rotate(-0.4deg);
+}
+
+.intro h2{
+  margin-top:0;
+}
+
+.intro p{
+  max-width:65ch;
+  margin-bottom:18px;
+}
+
+.intro .pen{
+  font-size:34px;
+  margin-top:30px;
+}
+.person-photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:opacity .9s, filter .9s;
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><span class="rec">rec</span><span>case file 0001, LAS 209 gender project</span></div>
+<section class="intro paper">
+  <h2>Case Background</h2>
+
+  <p>
+    This case does not involve a kidnapping.
+  </p>
+
+  <p>
+    No one took me.
+    No one forced me into a different life.
+    That's what makes it difficult to solve.
+  </p>
+
+  <p>
+    When I was younger, I never thought much about myself.
+    I wore clothes because I liked them.
+    I spoke when I had something to say.
+    I laughed loudly when something was funny.
+    I cried when I was hurt.
+    I wasn't constantly wondering how I looked while doing those things.
+  </p>
+
+  <p>
+    Then I got older.
+  </p>
+
+  <p>
+    I learned that some girls were called pretty and some weren't.
+    I learned that being skinny was never officially required, but somehow everyone knew it mattered.
+    I learned that confidence was attractive, but only in the right amount.
+    I learned that speaking up could make people respect you, unless it made them uncomfortable.
+    I learned that there were clothes that looked good on me and clothes that looked "too much."
+  </p>
+
+  <p>
+    I learned that there was always a right amount of everything.
+    Too loud.
+    Too emotional.
+    Too confident.
+    Too ambitious.
+    Too sensitive.
+    Too much.
+  </p>
+
+  <p>
+    Nobody handed me these rules.
+  </p>
+
+  <p>
+    I absorbed them.
+  </p>
+
+  <p>
+    From friends.
+    From family.
+    From strangers.
+    From teachers.
+    From comments.
+    From social media.
+  </p>
+
+  <p>
+    The strange thing is that every adjustment felt reasonable.
+  </p>
+
+  <p>
+    A different outfit.
+    A quieter opinion.
+    A harsh diet.
+    Changing my hair color.
+    Lip fillers.
+    and so on...
+  </p>
+
+  <p>
+    Every change was small enough to seem harmless.
+  </p>
+
+  <p>
+    But one day I started wondering something.
+  </p>
+
+  <p>
+    If every version of me is edited before anyone else sees it,
+    then who exactly are they seeing?
+  </p>
+
+  <p>
+    This investigation was opened after the disappearance of a person known as "Myself."
+  </p>
+
+  <p class="pen">
+    Last confirmed sighting:
+    Before I started asking permission to be who I already was.
+  </p>
+
+  <div class="stamp">
+    CASE OPENED
+  </div>
+
+</section>
+<section class="poster paper" aria-label="Missing person poster">
+  <span class="pen note-pen">this is the last place anyone saw her →</span>
+  <h1>MISSING</h1>
+  <p class="sub">Last seen before society’s expectations took over.</p>
+  <div class="row">
+    <div class="polaroid">
+      <div class="pic" id="pic">
+  <img
+    id="sil"
+    src="small me.jpeg"
+    alt="Missing person"
+    class="person-photo"
+  >
+  <div class="st">NOT FOUND</div>
+</div>
+      <span class="pen cap">me, before</span>
+    </div>
+    <dl>
+      <dt>Name</dt><dd>Myself</dd>
+      <dt>Height and build</dt><dd><span class="bar-r off" data-n="1">Changes depending on who is in the room</span></dd>
+      <dt>Known to answer to</dt><dd style="position:relative"><span class="bar-r off" data-n="2">“Fine.” “It's okay.” “Whatever you want.”</span>
+        <svg class="circle ring" viewBox="0 0 150 60" fill="none" stroke="#b3201a" stroke-width="3" stroke-linecap="round"><path d="M12 30c4-22 70-30 112-14 22 8 18 30-8 36-40 9-98 4-108-18-3-7 6-14 20-18"/></svg></dd>
+      <dt>Distinguishing features</dt><dd><span class="bar-r off" data-n="1">Laughs too loud. Isn't skinny enough. Wears what feels right.</span></dd>
+      <dt>Last known behavior</dt><dd><span class="bar-r off" data-n="3">Practicing how to sit, speak and look</span></dd>
+      <dt>Last seen</dt><dd>Right before the performance started</dd>
+    </dl>
+  </div>
+  <p class="reward">Reward: being recognized as who you are.</p>
+  <div class="coffee"></div>
+</section>
+
+<section class="file" aria-labelledby="sl">
+  <label id="sl" for="slider">How long has she been missing? Drag to move through the file.</label>
+  <input type="range" id="slider" min="0" max="3" step="1" value="0" aria-describedby="rep">
+  <div class="ticks" aria-hidden="true"><span>age 14</span><span>age 16</span><span>age 18</span><span>age 20</span></div>
+  <div class="rep" id="rep" aria-live="polite"></div>
+</section>
+
+<h2>Evidence from the scene</h2>
+<p class="lede">Three bags were logged. Open them.</p>
+<div class="ev">
+  <button class="bag" aria-expanded="false"><span class="k">exhibit A</span><span class="nm">A favorite outfit, never worn again</span><span class="more">open the bag</span><div class="rv"><p>
+  I used to choose clothes based on what I liked. If I felt comfortable, confident, or happy in them, that was enough.
+</p>
+
+<p>
+  As I got older, getting dressed stopped feeling simple. I started thinking about whether something was flattering enough, whether it made me look bigger, whether it showed too much, or whether people would think it suited me.
+</p>
+
+<p>
+  One of my favorite outfits stayed in the back of my closet for years. Nothing was wrong with it. I just stopped feeling like I was allowed to wear it.
+</p>
+
+<p>
+  Beauvoir argued that women are not born knowing what a woman should be, but learn it through society's expectations. Looking back, I don't think I stopped wearing that outfit because I stopped liking it. I stopped wearing it because I had learned to see myself through other people's eyes. Somewhere between wanting to be accepted and wanting to be enough, my own opinion became the quietest voice in the room.
+</p></div></button>
+  <button class="bag" aria-expanded="false"><span class="k">exhibit B</span><span class="nm">A number on a scale</span><span class="more">open the bag</span><div class="rv"><p>
+      I spent years believing that happiness was waiting on the other side of weight loss.
+      Between appointments, diets, mirrors, photos, and comparisons, a number slowly became more important than how she actually felt, and eventually weight
+    <p>
+      Judith Butler argues that gender is not something we naturally are, but something we learn to perform through repeated behaviors and expectations.
+      Looking back, I sometimes wonder whether I wanted to be thinner for myself, or whether I had spent so many years absorbing ideas about what a woman should look like that they began to feel like my own.
+    </p>
+</div></button>
+  <button class="bag" aria-expanded="false"><span class="k">exhibit C</span><span class="nm">A list of rules no one ever wrote down</span><span class="more">open the bag</span><div class="rv"><p>
+  Nobody ever gave me a list of rules.
+</p>
+
+<p>
+  Nobody sat me down and told me how much space I was allowed to take up, how I should look, what I should wear, or what kind of girl I should become.
+</p>
+
+<p>
+  Yet somehow I already knew.
+</p>
+
+<p>
+  I knew when I felt too loud. I knew when I felt too much. I knew when I looked in the mirror and immediately noticed what needed to change before noticing anything else.
+</p>
+
+<p>
+  The rules seemed to appear out of nowhere. They lived in conversations, jokes, compliments, social media posts, and the way people looked at certain girls differently than others.
+</p>
+
+<p>
+  Beauvoir argues that we become ourselves within a world that already has expectations waiting for us. Sometimes I wonder how many of my choices were actually mine. Not because anyone made them for me, but because I learned the rules so well that they started sounding like my own voice.
+</p></div></button>
+</div>
+
+<h2>What the investigators think</h2>
+<div class="memos">
+  <article class="memo a paper">
+  <h3>Judith Butler</h3>
+
+  <p>
+    Butler believed that gender is not something we simply are, but something we learn to do through repeated actions, habits, and expectations.
+  </p>
+
+  <div class="q">
+    if I spent years changing parts of myself to fit those expectations, where do those performances end and where do I begin?
+  </div>
+
+  <p>
+    Source: <i>Gender Trouble</i> (1990).
+  </p>
+</article>
+  <article class="memo b paper">
+  <h3>Simone de Beauvoir</h3>
+
+  <p>
+Butler argues that gender is produced through repeated acts and behaviors that eventually come to feel natural.
+</p>
+
+  <div class="q">
+    if so much of what I believed about myself was learned, what parts of me existed before I learned them?
+  </div>
+
+  <p>
+    Source: <i>The Second Sex</i> (1949).
+  </p>
+</article>
+</div>
+
+<p class="sortnote" id="sortnote" aria-live="polite"></p>
+
+<h2>Help me find myself again</h2>
+<p class="lede">
+These are six moments from my life. Small decisions, ordinary situations, nothing dramatic. Yet somewhere inside moments like these, pieces of me went missing. Help reopen the case.
+</p>
+<section class="iv paper" aria-labelledby="ivq">
+  <div class="meta" id="ivmeta"></div>
+  <div class="q" id="ivq"></div>
+  <div class="opts" id="opts"></div>
+  <div class="fb" id="fb" aria-live="polite"></div>
+</section>
+
+<section class="paper" style="padding:30px;margin-top:70px;">
+  <h2>Final Report</h2>
+
+  <p><strong>Case Number:</strong> 0001</p>
+
+  <p><strong>Subject:</strong> Myself</p>
+
+  <p>
+    <strong>Date Opened:</strong>
+    Unknown. Investigators were unable to determine when the disappearance began.
+  </p>
+
+  <p>
+    <strong>Cause of Disappearance:</strong>
+    No single event was identified. Evidence suggests the disappearance occurred gradually through comparisons, expectations, self-doubt, and the pressure to become someone easier to admire than to understand.
+  </p>
+
+  <p>
+    <strong>Persons of Interest:</strong>
+    Beauty standards, gender expectations, social media, comments disguised as compliments, unwritten rules, and the belief that being different versions of myself would eventually make me enough.
+  </p>
+
+  <p>
+    <strong>Investigation Findings:</strong>
+    The missing person was not lost all at once. Small pieces disappeared over many years. An outfit left unworn. A photograph deleted. An opinion kept to myself. A number on a scale given more importance than it deserved.
+  </p>
+
+  <p>
+    <strong>Theoretical Analysis:</strong>
+    Guided by the work of Judith Butler and Simone de Beauvoir, investigators found that many of the expectations shaping the subject's identity were learned over time until they began to feel natural.
+  </p>
+
+  <p class="pen">
+    The case revealed that the missing person was never completely gone.
+  </p>
+
+  <p class="pen">
+    She was hiding underneath years of expectations, comparison, and performance.
+  </p>
+
+  <p class="pen">
+    Recovery remains ongoing.
+  </p>
+</section>
+
+<footer>Project for LAS 209. The case is symbolic and partially fictional. Ideas from Judith Butler and Simone de Beauvoir. 
+    <p>Created by Sally Zeina, ID: 202402265</p></footer>
+</main>
+<script>
+const stages=[
+ {t:"Age 14: Fully present",p:"Seen running, loud, unembarrassed, wearing whatever felt right. Nobody had asked who she was supposed to be yet.",},
+ {t:"Age 16: first signs",p:"Witnesses saw her checking what others wore, how they sat and how they physically looked like. The first adjustments were small. They looked like growing up.",},
+ {t:"Age 18: disappearance underway",p:"The smile came on cue, her weight dropped, her laugh got smaller. Everyone said she seemed more mature.",},
+ {t:"Age 20: case opened",p:"The performance is complete. The original person has not been seen for years.",}
+];
+const sl=document.getElementById('slider'),rep=document.getElementById('rep'),sil=document.getElementById('sil'),pic=document.getElementById('pic');
+function draw(){const n=+sl.value,s=stages[n];rep.innerHTML='';
+ const h=document.createElement('h3');h.textContent=s.t;const p=document.createElement('p');p.textContent=s.p;rep.append(h,p);
+ sil.style.opacity=1-n*.3;sil.style.filter='blur('+n*1.6+'px) grayscale('+n*.3+')';pic.classList.toggle('gone',n===3);
+ document.querySelectorAll('.bar-r').forEach(e=>e.classList.toggle('off',n<+e.dataset.n));}
+sl.addEventListener('input',draw);draw();
+document.querySelectorAll('.bag').forEach(b=>b.addEventListener('click',()=>{const o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));b.querySelector('.more').textContent=o?'open the bag':'close the bag';}));
+
+const Q=[
+ {q:"You're looking through photos from a really good day. Before remembering the day itself, you start focusing on everything you don't like about how you look. What do you do?"
+ ,o:[
+{k:"c",s:0,t:"Delete the photos and keep only the ones where you look acceptable.",f:"The memory gets judged before it gets remembered."},
+{k:"r",s:0,t:"Post every photo immediately just to prove you don't care.",f:"The reaction is still controlling the choice."},
+{k:"m",s:1,t:"Keep the photos but hide them from everyone else.",f:"The memory survives, but only in private."},
+{k:"g",s:2,t:"Keep the photos because they capture a moment you enjoyed.",f:"good choice."}]},
+ {
+q:"You're getting ready to go out. The outfit you actually want to wear is hanging in your closet, but you start wondering what everyone else will think of it. What do you do?",
+o:[
+{k:"c",s:0,t:"Wear something safer.",f:"The outfit stays in the closet for another day."},
+{k:"r",s:0,t:"Wear it just to prove a point.",f:"Other people's opinions are still making the decision."},
+{k:"m",s:1,t:"Wear it, but spend the whole night adjusting it and worrying about it.",f:"Part of you showed up. Part of you stayed hidden."},
+{k:"g",s:2,t:"Wear it because you genuinely like it.",f:"Right. You don't owe anyone an explanation."}
+]},
+ {
+q:"A professor asks for a volunteer and you know the answer. Before raising your hand, you start wondering whether you'll sound stupid. What do you do?",
+o:[
+{k:"c",s:0,t:"Stay quiet and let someone else answer.",f:"The doubt spoke first."},
+{k:"r",s:0,t:"Answer only to prove you can.",f:"The fear is still setting the terms."},
+{k:"m",s:1,t:"Wait to see whether someone says the same thing first.",f:"The idea matters, but confidence is borrowed."},
+{k:"g",s:2,t:"Raise your hand and say what you think.",f:"We're half way there to finding her again."}
+]},
+
+ {
+q:"You're with a group of people and suddenly realize you've been filtering everything you say before saying it. What do you do?",
+o:[
+{k:"c",s:0,t:"Keep doing it. It's easier.",f:"The conversation continues, but less of you is in it."},
+{k:"r",s:0,t:"Start saying shocking things just to compensate.",f:"Rebellion is still letting the audience decide."},
+{k:"m",s:1,t:"Relax a little, but stay careful.",f:"The filter loosens, but never fully disappears."},
+{k:"g",s:2,t:"Stop editing yourself and speak naturally.",f:"Progress noted, but the case remains open."}
+]},
+{
+q:"You're scrolling through social media and everyone seems prettier, more confident, and more successful than you. What do you do?",
+o:[
+{k:"c",s:0,t:"Keep scrolling and compare yourself to all of them.",f:"Comparison rarely ends where it starts."},
+{k:"r",s:0,t:"Post something immediately so people see you're doing well too.",f:"The comparison just changed direction."},
+{k:"m",s:1,t:"Put your phone away for a while.",f:"Distance helps, but the comparison remains."},
+{k:"g",s:2,t:"Remind yourself you're comparing your life to a highlight reel.",f:"One step closer to closing the case."}
+]},
+ {
+q:"Someone asks, 'What kind of person do you want to become?' You realize you've spent years thinking about what other people wanted you to become. What do you say?",
+o:[
+{k:"c",s:0,t:"Give the answer people usually expect.",f:"Everyone understands the answer except you."},
+{k:"r",s:0,t:"Give the most unexpected answer possible.",f:"The expectation still got to choose."},
+{k:"m",s:1,t:"Say you're still figuring it out.",f:"Honest, but incomplete."},
+{k:"g",s:2,t:"Answer with what you genuinely want, even if it surprises people.",f:"The investigation gets its strongest lead yet."}
+]}
+];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let qi=0,score=0,kinds=[];
+const meta=document.getElementById('ivmeta'),qq=document.getElementById('ivq'),opts=document.getElementById('opts'),fb=document.getElementById('fb');
+function ask(){const c=Q[qi];meta.textContent='Sighting '+(qi+1)+' of '+Q.length;qq.textContent=c.q;opts.innerHTML='';fb.innerHTML='';
+ shuffle(c.o.slice()).forEach(x=>{const b=document.createElement('button');b.className='opt';b.textContent=x.t;b.addEventListener('click',()=>pick(x,b));opts.append(b);});}
+function pick(x,btn){score+=x.s;kinds.push(x.k);
+ [...opts.children].forEach(b=>b.disabled=true);btn.classList.add('pick');
+ fb.innerHTML='';const p=document.createElement('p');p.textContent=x.f;fb.append(p);
+ if(x.s<2){const g=Q[qi].o.find(o=>o.k==='g');const p2=document.createElement('p');p2.textContent='Closest to finding her: “'+g.t+'”';fb.append(p2);}
+ const n=document.createElement('button');n.className='go';n.textContent=qi<Q.length-1?'Next sighting':'See the result';
+ n.addEventListener('click',()=>{qi++;qi<Q.length?ask():finish();});fb.append(n);n.focus();}
+function finish(){const max=Q.length*2;let st,tx;
+ if(score>=max-2){st='FOUND';tx='She’s been located. It wasn’t because she did everything loudly. It’s because she kept choosing for herself, and the person who went missing started coming back.';}
+ else if(score>=max/2){st='SIGHTINGS REPORTED';tx='She turned up in some places and slipped away in others. That’s how most real cases go: the self comes back in pieces.';}
+ else{st='STILL MISSING';tx='She went along with the script, or performed against it, almost every time. None of it looked dramatic. Each choice looked reasonable, which is why she’s so hard to find.';}
+ meta.textContent='Case update';qq.textContent='';opts.innerHTML='';fb.innerHTML='';
+ const s=document.createElement('div');s.className='stamp';s.textContent=st;qq.append(s);
+ const p=document.createElement('p');p.textContent=tx;fb.append(p);
+ const rc=kinds.filter(k=>k==='r').length;
+ if(rc>=2){const pr=document.createElement('p');pr.textContent='You picked the dramatic option '+rc+' times. Doing the opposite of the rules, just for show, is still a performance (Butler). The answers that found her were the ones she actually wanted.';fb.append(pr);}
+ else{const pr=document.createElement('p');pr.textContent='Being found doesn’t mean breaking every rule. It means deciding for yourself, even when your choice looks traditional.';fb.append(pr);
+  const close=document.createElement('p');
+close.style.marginTop='20px';
+
+if(score>=max-2){
+ close.textContent=
+ 'Case closed. The missing person has been found and positively identified as herself.';
+}
+else if(score>=max/2){
+ close.textContent=
+ 'Case remains open. Investigators continue to receive reports of brief appearances.';
+}
+else{
+ close.textContent=
+ 'Case remains unsolved. The missing person has not been located.';
+}
+
+fb.append(close);
+ }
+ const r=document.createElement('button');r.className='go';r.textContent='Reopen the case';r.addEventListener('click',()=>{qi=0;score=0;kinds=[];ask();});fb.append(r);}
+ask();
+
+const S=[
+ {n:"The color pink",ans:"m",f:"In 1918 a US trade publication for children’s clothing advised pink for boys and blue for girls. Pink was seen as the stronger color. The rule flipped later."},
+ {n:"High heels",ans:"m",f:"They began as riding shoes for Persian cavalry, then became a fashion for European aristocratic men in the 1600s."},
+ {n:"Computer programming",ans:"f",f:"Women, including the six who programmed ENIAC in the 1940s, did much of the earliest programming. It was treated as clerical work until it gained status."}
+];
+let sdone=0,sright=0;
+const sorts=document.getElementById('sorts'),sortnote=document.getElementById('sortnote');
+S.forEach(it=>{const d=document.createElement('div');d.className='sc';
+ const h=document.createElement('h3');h.textContent=it.n;const a=document.createElement('p');a.className='ask';a.textContent='First assigned to:';
+ const bt=document.createElement('div');bt.className='btns';const res=document.createElement('div');res.className='res';res.setAttribute('aria-live','polite');
+ [['m','Men and boys'],['f','Women and girls']].forEach(([v,l])=>{const b=document.createElement('button');b.className='opt';b.textContent=l;
+  b.addEventListener('click',()=>{[...bt.children].forEach(x=>x.disabled=true);b.classList.add('pick');
+   const ok=v===it.ans;if(ok)sright++;sdone++;res.innerHTML='';const bb=document.createElement('b');bb.textContent=ok?'You knew it. ':'Not what you expected. ';res.append(bb,document.createTextNode(it.f));
+   if(sdone===S.length)sortnote.textContent='You got '+sright+' of '+S.length+'. Whatever you guessed, each “natural” rule was later reversed or erased. If it can change, it was never nature.';});
+  bt.append(b);});
+ d.append(h,a,bt,res);sorts.append(d);});
+</script>
+</body>
+</html>
